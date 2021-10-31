@@ -1,0 +1,364 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+    <title>Template</title>
+</head>
+
+<body>
+    <!--Header-->
+    <header id="header">
+        <nav class="navbar navbar-expand-md navbar-light main-bg-color">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-white" href="#header">Car Price Prediction</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link font-size-20 text-white" href="#main">Predict</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-size-20 text-white" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-size-20 text-white" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--End Header-->
+
+    <!--Main Section-->
+    <section id="main" class="mt-4">
+        <div class="container">
+            <form action="Details" method="POST">
+                <h2 class="text-dark mb-3">Enter Details Of Car</h2>
+                <div class="row">
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Brand</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <select class="custom-select w-75 rounded-1" id="brand" onchange="id_return()">
+                            <option ></option>
+                            <option value="1" selected>BMW</option>
+                            <option value="2">Kia</option>
+                            <option value="3">Vaz</option>
+                            <option value="4">Mercedes</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Fuel Type</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            {% for fuel in power_engine %}
+                                <option value="1">{{fuel}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Model</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <select class="custom-select w-75 rounded-1" id="model" onchange="generator()">
+                            
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Transmission</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            {% for t in transmission %}
+                                <option value="1">{{t}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Ban Type</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            <option value="1">SUV</option>
+                            <option value="2">Sedan</option>
+                            <option value="3">Coupe</option>
+                            <option value="4">Van</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Gear Box</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            <option value="1">Mechanic</option>
+                            <option value="2">Auto</option>
+                            <option value="3">Robotizied</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Distance(km)</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <input type="number" class="rounded" required>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Release date</p>
+                    </div>
+                    <div class="col-md-4 col-8 form-group">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            <option value="1">2020</option>
+                            <option value="2">2019</option>
+                            <option value="3">2018</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Color</p>
+                    </div>
+                    <div class="col-md-4 col-8 form-group">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            <option value="1">Black</option>
+                            <option value="2">White</option>
+                            <option value="3">Red</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Volume of Engine(sm<sup>3</sup>)</p>
+                    </div>
+                    <div class="col-md-4 col-8 form-group">
+                        <select class="custom-select w-75 rounded-1">
+                            <option selected></option>
+                            <option value="1">1600</option>
+                            <option value="2">1800</option>
+                            <option value="3">2000</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 col-4">
+                        <p class="text-dark">Power of Engine</p>
+                    </div>
+                    <div class="col-md-4 col-8">
+                        <input type="number" class="rounded" required>
+                    </div>
+
+                    <div class="col-md-3 col-6 form-check mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="CreditCheck">
+                        <label class="form-check-label" for="CreditCheck">
+                            Credit
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 col-6 form-check mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="BarterCheck">
+                        <label class="form-check-label" for="BarterCheck">
+                            Barter
+                        </label>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <h3>Additional Options</h3>
+                    </div>
+
+                    <!--Additional Options-->
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="1">
+                        <label class="form-check-label" for="1">
+                            Yüngül lehimli disklər
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="2">
+                        <label class="form-check-label" for="2">
+                            ABS
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="3">
+                        <label class="form-check-label" for="3">
+                            Lyuk
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="4">
+                        <label class="form-check-label" for="4">
+                            Yağış sensoru
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="5">
+                        <label class="form-check-label" for="5">
+                            Mərkəzi qapanma
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="6">
+                        <label class="form-check-label" for="6">
+                            Park radarı
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="7">
+                        <label class="form-check-label" for="7">
+                            Kondisioner
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="8">
+                        <label class="form-check-label" for="8">
+                            Oturacaqların isidilməsi
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="9">
+                        <label class="form-check-label" for="9">
+                            Dəri salon
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="10">
+                        <label class="form-check-label" for="10">
+                            Ksenon lampalar
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="11">
+                        <label class="form-check-label" for="11">
+                            Arxa görüntü kamerası
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="12">
+                        <label class="form-check-label" for="12">
+                            Yan pərdələr
+                        </label>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <input class="form-check-input" type="checkbox" value="" id="13">
+                        <label class="form-check-label" for="13">
+                            Oturacaqların ventilyasiyası
+                        </label>
+                    </div>
+                    <!--End Additional Options-->
+                </div>
+            </form>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <button type="button" class="btn main-bg-color text-light">Predict</button>
+                </div>
+                <div class="col-6">
+                    <!--Result of Prediction Here-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Main Section-->
+
+    <!--About Section-->
+    <section id="about" class="generic mt-4">
+        <div class="container">
+            <h2>About Section</h2>
+            <div class="row">
+                <p class="text-dark">This site will be very awesome. Stay in touch. Wash your hands properly. sadasdadasda</p>
+            </div>
+        </div>
+    </section>
+    <!--End About Section-->
+
+
+
+    <!--Footer-->
+    <footer id="contact" class="generic mt-4">
+        <div class="container-fluid main-bg-color">
+            <div class="container">
+                <h2 class="fw-bold text-white mb-3">Contact</h2>
+                <form class="row">
+                    <div class="col-md-6 col-12 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-text rounded-0 bg-white border-dark">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <input type="text" class="form-control rounded-0 border-dark" placeholder="Name" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="input-group">
+                            <div class="input-group-text rounded-0 bg-white border-dark">
+                                <i class="bi bi-at"></i>
+                            </div>
+                            <input type="email" class="form-control rounded-0 border-dark" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="col-12 py-4">
+                        <div class="input-group">
+                            <div class="input-group-text rounded-0 bg-white border-dark">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <textarea type="email" class="form-control rounded-0 border-dark" placeholder="Type here"
+                                rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <div class="d-grid mb-4">
+                        <button class="btn btn-light text-uppercase bg-white fw-bold border-dark" type="submit">
+                            Send
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </footer>
+    <!--End Footer-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <script src="id.js"></script>
+
+</body>
+
+</html>

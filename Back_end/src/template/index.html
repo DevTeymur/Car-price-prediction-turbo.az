@@ -1,0 +1,289 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block content %}
+
+<!--Main Section-->
+<section id="main" class="mt-4">
+    <div class="container">
+        <h2 class="text-dark mb-3">Enter Details Of Car</h2>
+        <form action="" method="POST" id="car-form">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">City</p>
+                </div>
+                <div class="col-md-4 col-8 form-group">
+                    <select class="custom-select w-75 rounded-1" name="City" required>
+                        <option selected></option>
+                        {% for city in city_name %}
+                        <option value="{{city}}">{{city}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Brand</p>
+                </div>
+                <div class="col-md-4 col-8" id="cars">
+                    <select class="custom-select w-75 rounded-1" name="Brand" id="brand-data-box" required></select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Model</p>
+                </div>
+                <div class="col-md-4 col-8" id="models">
+                    <select class="custom-select w-75 rounded-1" name="Model" id="models-data-box" required></select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Production Year</p>
+                </div>
+                <div class="col-md-4 col-8 form-group">
+                    <select class="custom-select w-75 rounded-1" name="ProdYear" required>
+                        <option selected></option>
+                        {% for date in prod_year %}
+                        <option value="{{date}}">{{date}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Ban Type</p>
+                </div>
+                <div class="col-md-4 col-8">
+                    <select class="custom-select w-75 rounded-1" name="BanType" required>
+                        <option selected></option>
+                        {% for ban in ban_type %}
+                        <option value="{{ban}}">{{ban}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Color</p>
+                </div>
+                <div class="col-md-4 col-8 form-group">
+                    <select class="custom-select w-75 rounded-1" name="Color" required>
+                        <option selected></option>
+                        {% for col in color %}
+                        <option value="{{col}}">{{col}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Volume of Engine(sm<sup>3</sup>)</p>
+                </div>
+                <div class="col-md-4 col-8 form-group">
+                    <select class="custom-select w-75 rounded-1" name="EngVol" required>
+                        <option selected></option>
+                        {% for volume in volume_engine %}
+                        <option value="{{volume}}">{{volume}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Power of Engine</p>
+                </div>
+                <div class="col-md-4 col-8">
+                    <input style="width: 75%;" type="number" class="rounded" name="EngPow" min="0" max="2000" required>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Fuel Type</p>
+                </div>
+                <div class="col-md-4 col-8">
+                    <select class="custom-select w-75 rounded-1" name="FuelType" required>
+                        <option selected></option>
+                        {% for fuel in fuel_type %}
+                        <option value="{{fuel}}">{{fuel}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Distance(km)</p>
+                </div>
+                <div class="col-md-4 col-8">
+                    <input style="width: 75%;" type="number" class="rounded" name="RideDist" min="0" required>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Gear Box</p>
+                </div>
+                <div class="col-md-4 col-8">
+                    <select class="custom-select w-75 rounded-1" name="Gearbox" required>
+                        <option selected></option>
+                        {% for gear in gear_box %}
+                        <option value="{{gear}}">{{gear}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2 col-4">
+                    <p class="text-dark">Transmission</p>
+                </div>
+                <div class="col-md-4 col-8">
+                    <select class="custom-select w-75 rounded-1" name="Transmission" required>
+                        <option selected></option>
+                        {% for tr in transmission %}
+                        <option value="{{tr}}">{{tr}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-3 col-6 form-check mt-3">
+                    <input class="form-check-input" type="checkbox" value="1" id="CreditCheck" name="Credit">
+                    <label class="form-check-label" for="CreditCheck">
+                        Credit
+                    </label>
+                </div>
+
+                <div class="col-md-3 col-6 form-check mt-3">
+                    <input class="form-check-input" type="checkbox" value="1" id="BarterCheck" name="Barter">
+                    <label class="form-check-label" for="BarterCheck">
+                        Barter
+                    </label>
+                </div>
+
+                <div class="col-12 mt-5">
+                    <h3>Additional Options</h3>
+                </div>
+
+                <!--Additional Options-->
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="1" name="YungulLehimliDiskler">
+                    <label class="form-check-label" for="1">
+                        Alloy wheels
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="2" name="ABS">
+                    <label class="form-check-label" for="2">
+                        ABS
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="3" name="Lyuk">
+                    <label class="form-check-label" for="3">
+                        Luke
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="4" name="RainSensor">
+                    <label class="form-check-label" for="4">
+                        Rain sensor
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="5" name="MerkeziQapanma">
+                    <label class="form-check-label" for="5">
+                        Central locking
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="6" name="ParKRadar">
+                    <label class="form-check-label" for="6">
+                        Parktronic
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="7" name="Condisioner">
+                    <label class="form-check-label" for="7">
+                        Air conditioning
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="8" name="SeatHeat">
+                    <label class="form-check-label" for="8">
+                        Heated seats
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="9" name="LeatherSalon">
+                    <label class="form-check-label" for="9">
+                        Leather interior
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="10" name="KsenonLamps">
+                    <label class="form-check-label" for="10">
+                        Xenon lamps
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="11" name="BackVisionCam">
+                    <label class="form-check-label" for="11">
+                        Rear view camera
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="12" name="YanPerdeler">
+                    <label class="form-check-label" for="12">
+                        Side curtains
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <input class="form-check-input" type="checkbox" value="1" id="13" name="SeatVentilation">
+                    <label class="form-check-label" for="13">
+                        Seat ventilation
+                    </label>
+                </div>
+                <!--End Additional Options-->
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <button type="submit" class="btn main-bg-color text-light">Predict</button>
+                </div>
+        </form>
+        <div class="col-6">
+            {% if price_min%}
+            <p class="fw-bold">{{price_min}}-{{price_max}} &#8380;</p>
+            {% else %}
+            <p class="fw-bold"> </p>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</section>
+<!--End Main Section-->
+
+<!--About Section-->
+<section id="about" class="generic mt-4">
+    <div class="container">
+        <h2>About site</h2>
+        <div class="row">
+            <ul>
+                <li>This site DEMO version of this site.</li>
+                <li>You may not find the car model that you want because data is limited.</li>
+                <li>The result sometimes may not match with the real time prices.</li>
+            </ul>
+        </div>
+        <div class="row">
+            <h5 class="font">Thanks for visiting</h5>
+        </div>
+    </div>
+</section>
+<!--End About Section-->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+{% endblock %}
