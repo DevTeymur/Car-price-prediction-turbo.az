@@ -1,4 +1,4 @@
-# Real time car price predicton model
+# Real time car price predicton
 
 ## About
 
